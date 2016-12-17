@@ -54,12 +54,6 @@ apiRoutes.get('/', function(req, res) {
   res.json({ message: "You just blue yourself." });
 });
 
-apiRoutes.get('/users', function(req, res) {
-  User.find({}, function(err, users) {
-    res.json(users);
-  });
-});
-
 apiRoutes.post('/authenticate', function(req, res) {
 
   User.findOne({
@@ -89,6 +83,41 @@ apiRoutes.post('/authenticate', function(req, res) {
       }
 
     }
+  });
+});
+
+apiRoutes.use(function(req, res, next) {
+
+  var token = req.body.token || req.query.token || req.headers['x-access-token'];
+
+  if (token) {
+
+    jwt.verify(token, app.get('superSecret'), function(err, decoded) {
+
+      if (err) {
+        return res.json({ success: false, message: "Failed to authenticate." });
+      } else {
+        req.decoded = decoded;
+        next();
+      }
+
+    });
+
+  } else {
+
+    return res.status(403).send({ 
+        success: false, 
+        message: 'No token provided. Please authenticate first.' 
+    });
+
+  }
+
+});
+
+
+apiRoutes.get('/users', function(req, res) {
+  User.find({}, function(err, users) {
+    res.json(users);
   });
 });
 
