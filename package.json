@@ -1,0 +1,27 @@
+{
+  "name": "node-api-jwt",
+  "version": "1.0.0",
+  "description": "Practive with Node and JWTs",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/philipcolejohnson/Node-API-JWT.git"
+  },
+  "author": "Philip Johnson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/philipcolejohnson/Node-API-JWT/issues"
+  },
+  "homepage": "https://github.com/philipcolejohnson/Node-API-JWT#readme",
+  "dependencies": {
+    "body-parser": "1.x.x",
+    "express": "4.x.x",
+    "jsonwebtoken": "7.x.x",
+    "mongoose": "4.x.x",
+    "morgan": "1.x.x"
+  }
+}
